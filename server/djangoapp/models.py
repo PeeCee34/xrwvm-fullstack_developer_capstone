@@ -3,7 +3,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from django.db import models
 
 # Create your models here.
 
@@ -52,3 +52,14 @@ class CarModel(models.Model):
 # - Year (IntegerField) with min value 2015 and max value 2023
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
+
+
+class Dealership(models.Model):
+    full_name = models.CharField(max_length=200)
+    city = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+    zip = models.CharField(max_length=20)
+    state = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.full_name

@@ -8,7 +8,8 @@ const Dealers = () => {
   const [dealersList, setDealersList] = useState([]);
   const [states, setStates] = useState([]);
 
-  const dealer_url = "/djangoapp/get_dealers";
+  const dealer_url = "/djangoapp/get_dealers/";
+
 
   const filterDealers = async (state) => {
     let url = state === "All" ? dealer_url : `${dealer_url}/${state}`;
@@ -22,6 +23,7 @@ const Dealers = () => {
   const get_dealers = async () => {
     const res = await fetch(dealer_url, { method: "GET" });
     const retobj = await res.json();
+    console.log("API response:", retobj); 
     if (retobj.status === 200) {
       let all_dealers = Array.from(retobj.dealers);
       let statesList = all_dealers.map((dealer) => dealer.state);
