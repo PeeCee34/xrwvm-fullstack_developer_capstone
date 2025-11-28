@@ -127,15 +127,23 @@ def get_dealer_details(request, dealer_id):
 # def add_review(request):
 # ...
 def add_review(request):
-    if(request.user.is_anonymous == False):
+    if request.method != "POST":
+        return JsonResponse({"status": 405, "message": "Method not allowed"}, status=405)
+
+    if request.user.is_anonymous:
+        return JsonResponse({"status": 403, "message": "Unauthorized"}, status=403)
+
+    try:
         data = json.loads(request.body)
-        try:
-            response = post_review(data)
-            return JsonResponse({"status":200})
-        except:
-            return JsonResponse({"status":401,"message":"Error in posting review"})
-    else:
-        return JsonResponse({"status":403,"message":"Unauthorized"})
+        required_fields = ["name","dealership","review","purchase","purchase_date","car_make","car_model","car_year"]
+        for field in required_fields:
+            if field not in data or not str(data[field]).strip():
+                return JsonResponse({"status":400,"message":f"Missing or empty field: {field}"}, status=400)
+
+        response = post_review(data)  # your helper function
+        return JsonResponse({"status":200,"message":"Review posted successfully"})
+    except Exception as e:
+        return JsonResponse({"status":500,"message":f"Error in posting review: {str(e)}"}, status=500)
 
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
