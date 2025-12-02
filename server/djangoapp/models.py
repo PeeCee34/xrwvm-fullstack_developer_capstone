@@ -17,7 +17,7 @@ class CarModel(models.Model):
         on_delete=models.CASCADE
     )  # Many-to-One relationship
     dealer_id = models.IntegerField
-       (null=True, blank=True)  # Refers to dealer in Cloudant
+    (null=True, blank=True)  # Refers to dealer in Cloudant
     name = models.CharField(max_length=100)
 
     CAR_TYPES = [
