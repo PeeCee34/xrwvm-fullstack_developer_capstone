@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import JsonResponse
@@ -13,8 +12,6 @@ from .populate import initiate
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-
-# Create your views here.
 
 @csrf_exempt
 def login_user(request):
@@ -138,16 +135,24 @@ def add_review(request):
         for field in required_fields:
             if field not in data or not str(data[field]).strip():
                 return JsonResponse(
-                    {"status": 400, "message": f"Missing or empty field: {field}"},
+                    {
+                        "status": 400,
+                        "message": f"Missing or empty field: {field}",
+                    },
                     status=400,
                 )
 
         post_review(data)
-        return JsonResponse({"status": 200, "message": "Review posted successfully"})
+        return JsonResponse(
+            {"status": 200, "message": "Review posted successfully"}
+        )
 
     except Exception as e:
         return JsonResponse(
-            {"status": 500, "message": f"Error in posting review: {str(e)}"},
+            {
+                "status": 500,
+                "message": f"Error in posting review: {str(e)}",
+            },
             status=500,
         )
 
