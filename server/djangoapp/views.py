@@ -62,7 +62,7 @@ def registration_view(request):
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-        except:
+     except:
 
         
         # If not, simply log this is a new user
