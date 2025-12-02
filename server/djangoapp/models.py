@@ -1,15 +1,14 @@
 # Uncomment the following imports before adding the Model code
-
 from django.db import models
-from django.utils.timezone import now
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db import models
+
 
 # Create your models here.
 
 # <HINT> Create a Car Make model `
 class CarMake(models.Model):
     name = models.CharField(max_length=100)
+    
     description = models.TextField()
     # Optional: add fields like country, founded_year, etc.
 
@@ -63,3 +62,4 @@ class Dealership(models.Model):
 
     def __str__(self):
         return self.full_name
+
