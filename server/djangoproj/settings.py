@@ -17,7 +17,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
-   (
+    (
         "https://porelivingst-8000.theianext-1-labs-prod-misc-tools-us-east-0."
         "proxy.cognitiveclass.ai"
     ),
@@ -28,7 +28,7 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-   (
+    (
         "https://porelivingst-8000.theianext-1-labs-prod-misc-tools-us-east-0."
         "proxy.cognitiveclass.ai"
     ),
